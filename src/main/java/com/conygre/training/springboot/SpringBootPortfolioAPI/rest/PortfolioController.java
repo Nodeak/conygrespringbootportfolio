@@ -21,14 +21,14 @@ public class PortfolioController {
         return portfolioService.getAllUsers();
     }
 
-//    @GetMapping("/user/accounts")
-//    public Collection<portfolioService> getAccounts() {
-//        return portfolioService.getAllAccounts();
-//    }
-//
-//    @GetMapping("/user/holdings")
-//    public Collection<portfolioService> getHoldings() {
-//        return portfolioService.getAllHoldings();
-//    }
+    @GetMapping("/user/accounts")
+    public Collection<Account> getAccounts() {
+        return portfolioService.getAllAccounts();
+    }
+
+    @GetMapping("/user/holdings")
+    public Collection<Holdings> getHoldings() {
+        return portfolioService.getAllHoldings();
+    }
 
 }

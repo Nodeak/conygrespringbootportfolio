@@ -16,23 +16,23 @@ public class PortfolioServiceImpl implements PortfolioService {
 
     @Autowired
     private UserRepository userRepository;
-//
-//    @Autowired
-//    private AccountRepository accountRepository;
-//
-//    @Autowired
-//    private HoldingsRepository holdingsRepository;
+
+    @Autowired
+    private AccountRepository accountRepository;
+
+    @Autowired
+    private HoldingsRepository holdingsRepository;
 
     @Override
     public Collection<User> getAllUsers() {
         return userRepository.findAll();
     }
-//    @Override
-//    public Collection<Account> getAllAccounts() {
-//        return accountRepository.findAll();
-//    }
-//    @Override
-//    public Collection<Holdings> getAllHoldings(){
-//        return holdingsRepository.findAll();
-//    }
+    @Override
+    public Collection<Account> getAllAccounts() {
+        return accountRepository.findAll();
+    }
+    @Override
+    public Collection<Holdings> getAllHoldings(){
+        return holdingsRepository.findAll();
+    }
 }
