@@ -4,8 +4,9 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="Holdings")
-public class Holdings {
+public class Holdings implements Serializable{
 
+    @Id
     @Column(name = "user_id")
     private int user_id;
 
