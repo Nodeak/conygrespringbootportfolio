@@ -9,6 +9,7 @@ public class Account {
     @Column(name = "id")
     private int id;
 
+    //@OneToMany(cascade = CascadeType.ALL, targetEntity = Holdings.class)
     @Column(name = "user_id")
     private int user_id;
 
