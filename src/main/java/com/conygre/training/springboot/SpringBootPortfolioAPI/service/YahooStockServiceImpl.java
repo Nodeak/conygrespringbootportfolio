@@ -9,4 +9,6 @@ public class YahooStockServiceImpl {
     public YahooStockServiceImpl(final Stock stock) {
         this.stock = stock;
     }
+    public Stock get_Stock(){return this.stock;}
+
 }
