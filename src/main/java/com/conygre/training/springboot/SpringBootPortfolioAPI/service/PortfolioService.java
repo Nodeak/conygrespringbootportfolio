@@ -12,5 +12,5 @@ public interface PortfolioService {
     Collection<Account> getAllAccounts();
     Collection<Holdings> getAllHoldings();
     Optional<Account> getAccountsByID(int id);
-    Collection<Account> findAccountByUser_idAndType(int user_id, String type);
+    //Collection<Account> findAccountByUser_idAndType(int user_id, String type);
 }

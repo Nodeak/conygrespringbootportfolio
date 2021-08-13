@@ -11,9 +11,8 @@ public class Account implements Serializable{
     @Column(name = "id")
     private int id;
 
-    @OneToMany()
-    @JoinColumn(name="id", referencedColumnName = "user_id")
-    private User user_id;
+    @Column(name = "user_id")
+    private int user_id;
 
     @Column(name = "type")
     private String type;
@@ -33,11 +32,11 @@ public class Account implements Serializable{
         this.id = id;
     }
 
-    public User getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(User user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 

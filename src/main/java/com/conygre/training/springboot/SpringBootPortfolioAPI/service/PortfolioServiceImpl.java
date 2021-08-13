@@ -36,7 +36,6 @@ public class PortfolioServiceImpl implements PortfolioService {
     public Collection<Holdings> getAllHoldings(){
         return holdingsRepository.findAll();
     }
-
     @Override
     public Optional<Account> getAccountsByID(int id){
         return accountRepository.findById(id);

@@ -35,8 +35,8 @@ public class PortfolioController {
         return portfolioService.getAccountsByID(id);
     }
 
-    @RequestMapping(value = "/{user_id}/accounts?type={type}", method=RequestMethod.GET)
-    public Collection<Account> getAccountsByUserID(@PathVariable int user_id, String type) {
-        return portfolioService.findAccountByUser_idAndType(user_id, type);
-    }
+    //@RequestMapping(value = "/{user_id}/accounts?type={type}", method=RequestMethod.GET)
+    //public Collection<Account> getAccountsByUserID(@PathVariable int user_id, String type) {
+    //    return portfolioService.findAccountByUser_idAndType(user_id, type);
+    //}
 }
