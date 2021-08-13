@@ -9,5 +9,6 @@ import java.util.Collection;
 public interface PortfolioService {
     Collection<User> getAllUsers();
     Collection<Account> getAllAccounts();
+
     Collection<Holdings> getAllHoldings();
 }
