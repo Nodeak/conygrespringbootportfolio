@@ -7,9 +7,9 @@ import java.io.Serializable;
 public class Account implements Serializable{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
 
     @Column(name = "user_id")
     private int user_id;
@@ -24,11 +24,11 @@ public class Account implements Serializable{
     private Float cash_value;
 
 
-    public int get_id() {
+    public int getId() {
         return id;
     }
 
-    public void set_id(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 

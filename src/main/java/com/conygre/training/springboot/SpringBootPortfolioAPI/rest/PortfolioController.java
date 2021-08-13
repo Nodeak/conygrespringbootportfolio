@@ -3,11 +3,10 @@ package com.conygre.training.springboot.SpringBootPortfolioAPI.rest;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.*;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.service.PortfolioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/portfolio-manager")
@@ -31,4 +30,13 @@ public class PortfolioController {
         return portfolioService.getAllHoldings();
     }
 
+    @RequestMapping(value = "/{id}/accounts", method=RequestMethod.GET)
+    public Optional<Account> getAccounts(@PathVariable int id) {
+        return portfolioService.getAccountsByID(id);
+    }
+
+    //@RequestMapping(value = "/{user_id}/accounts?type={type}", method=RequestMethod.GET)
+    //public Collection<Account> getAccountsByUserID(@PathVariable int user_id, String type) {
+    //    return portfolioService.findAccountByUser_idAndType(user_id, type);
+    //}
 }
