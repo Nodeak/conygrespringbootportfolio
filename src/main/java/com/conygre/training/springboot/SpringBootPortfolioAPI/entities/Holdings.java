@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="Holdings")
-public class Holdings implements Serializable{
+public class Holdings implements Serializable {
 
     @Id
-    @Column(name = "user_id")
-    private int user_id;
+    @Column(name = "account_id")
+    private int account_id;
 
     @Column(name = "type")
     private String type;
@@ -22,12 +22,12 @@ public class Holdings implements Serializable{
     @Column(name = "buy_price")
     private float buy_price;
 
-    public int getUser_id() {
-        return user_id;
+    public int getAccount_id() {
+        return account_id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setAccount_id(int account_id) {
+        this.account_id = account_id;
     }
 
     public String getType() {

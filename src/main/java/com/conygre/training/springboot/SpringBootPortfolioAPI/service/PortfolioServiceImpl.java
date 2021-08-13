@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class PortfolioServiceImpl implements PortfolioService {
@@ -34,5 +35,10 @@ public class PortfolioServiceImpl implements PortfolioService {
     @Override
     public Collection<Holdings> getAllHoldings(){
         return holdingsRepository.findAll();
+    }
+
+    @Override
+    public Optional<Account> getAccountsByID(int id){
+        return accountRepository.findById(id);
     }
 }

@@ -7,12 +7,13 @@ import java.io.Serializable;
 public class Account implements Serializable{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    //@OneToMany(cascade = CascadeType.ALL, targetEntity = Holdings.class)
-    @Column(name = "user_id")
-    private int user_id;
+    @OneToMany()
+    @JoinColumn(name="id", referencedColumnName = "user_id")
+    private User user_id;
 
     @Column(name = "type")
     private String type;
@@ -24,19 +25,19 @@ public class Account implements Serializable{
     private Float cash_value;
 
 
-    public int get_id() {
+    public int getId() {
         return id;
     }
 
-    public void set_id(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public int getUser_id() {
+    public User getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(User user_id) {
         this.user_id = user_id;
     }
 

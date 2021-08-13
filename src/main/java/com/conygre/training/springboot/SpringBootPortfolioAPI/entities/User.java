@@ -1,6 +1,8 @@
 package com.conygre.training.springboot.SpringBootPortfolioAPI.entities;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="User")
@@ -52,5 +54,6 @@ public class User implements Serializable{
     public void setNet_worth(float net_worth) {
         this.net_worth = net_worth;
     }
+
 
 }
