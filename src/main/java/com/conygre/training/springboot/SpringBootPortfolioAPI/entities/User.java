@@ -9,6 +9,7 @@ public class User implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    //@OneToMany(cascade = CascadeType.ALL, targetEntity = Account.class)
     private int id;
 
     @Column(name = "first_name")
