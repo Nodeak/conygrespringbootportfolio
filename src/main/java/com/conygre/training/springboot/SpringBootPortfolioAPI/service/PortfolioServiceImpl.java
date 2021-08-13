@@ -1,4 +1,13 @@
 package com.conygre.training.springboot.SpringBootPortfolioAPI.service;
 
-public class PortfolioServiceImpl {
+import java.util.Collection;
+
+public class PortfolioServiceImpl implements PortfolioService {
+
+    @Override
+    public Collection<User> getAllUsers();
+    @Override
+    public Collection<Account> getAllAccounts();
+    @Override
+    public Collection<Holdings> getAllHoldings();
 }
