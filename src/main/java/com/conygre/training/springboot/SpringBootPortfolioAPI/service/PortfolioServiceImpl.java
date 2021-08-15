@@ -36,6 +36,17 @@ public class PortfolioServiceImpl implements PortfolioService {
     public Collection<Holdings> getAllHoldings(){
         return holdingsRepository.findAll();
     }
+
+    @Override
+    public Collection<Holdings> getHoldingsByAccountId(int accountId){
+        return holdingsRepository.getHoldingsByAccountId(accountId);
+    }
+
+    @Override
+    public Collection<Holdings> getHoldingsByAccountIdAndType(int accountId, String type){
+        return holdingsRepository.getHoldingsByAccountIdAndType(accountId, type);
+    }
+
     @Override
     public Optional<Account> getAccountsByID(int id){
         return accountRepository.findById(id);

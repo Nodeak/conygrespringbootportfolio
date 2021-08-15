@@ -33,6 +33,18 @@ public class PortfolioController {
         return portfolioService.getAllHoldings();
     }
 
+    /*  RETURNS HOLDINGS  */
+
+    @RequestMapping(value = "/holdings/accountId={accountId}", method=RequestMethod.GET)
+    public Collection<Holdings> getHoldingsByAccountId(@PathVariable int accountId){
+        return portfolioService.getHoldingsByAccountId(accountId);
+    }
+
+    @RequestMapping(value = "/holdings/accountId={accountId}+type={type}", method=RequestMethod.GET)
+    public Collection<Holdings> getHoldingsByAccountIdAndType(@PathVariable int accountId, @PathVariable String type){
+        return portfolioService.getHoldingsByAccountIdAndType(accountId, type);
+    }
+
     /*   RETURNS ACCOUNTS  */
 
     //Returns accounts with specific id
