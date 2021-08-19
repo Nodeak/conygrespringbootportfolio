@@ -51,7 +51,7 @@ public class YahooStockService implements YahooStockDAO {
 
     //returns map of market indexes and their prices (eg. Nasdaq:14500, Dow:34920)
     public Map<String,BigDecimal> Market_Indexes() throws IOException{
-        Map<String,BigDecimal> Market_Movers=new HashMap<String, BigDecimal>();
+        Map<String,BigDecimal> Market_Movers= new HashMap<>();
         Stock Marketindex=YahooFinance.get("COMP");
         Market_Movers.put("COMP",Marketindex.getQuote().getPrice());
         Marketindex=YahooFinance.get("DJIA");
@@ -62,7 +62,7 @@ public class YahooStockService implements YahooStockDAO {
 
     //Returns accounts current holdings and maps them to their current price
     public Map<String,BigDecimal> getAllHoldingPrices(Collection<Holdings> Current_Holdings) throws IOException{
-        Map<String,BigDecimal> Prices=new HashMap<String, BigDecimal>();
+        Map<String,BigDecimal> Prices= new HashMap<>();
         Stock stock;
         for(Holdings h : Current_Holdings){
             stock=YahooFinance.get(h.getSymbol());
