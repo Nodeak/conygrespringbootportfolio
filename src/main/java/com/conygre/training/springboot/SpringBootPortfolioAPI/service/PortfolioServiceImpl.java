@@ -29,6 +29,11 @@ public class PortfolioServiceImpl implements PortfolioService {
     private static final Logger logger = LogManager.getLogger(PortfolioServiceImpl.class);
 
     @Override
+    public Iterable<User> getCatalog() {
+        return userRepository.findAll();
+    }
+
+    @Override
     public Collection<User> getAllUsers() {
         logger.info("getting all users");
         return userRepository.findAll();

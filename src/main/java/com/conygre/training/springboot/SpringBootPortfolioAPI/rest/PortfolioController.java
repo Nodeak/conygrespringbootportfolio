@@ -21,6 +21,11 @@ public class PortfolioController {
     @Autowired
     private PortfolioService portfolioService;
 
+    @RequestMapping(method = RequestMethod.GET)
+    public Iterable<User> findAll() {
+        return portfolioService.getCatalog();
+    }
+
     //Returns all users
     @GetMapping("/users")
     public Collection<User> getUsers() {

@@ -7,6 +7,7 @@ import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.User;
 import java.util.Collection;
 
 public interface PortfolioService {
+    Iterable<User> getCatalog();
     Collection<User> getAllUsers();
     Collection<Account> getAllAccounts();
     Collection<Holdings> getAllHoldings();
