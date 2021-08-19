@@ -23,6 +23,8 @@ public class Account implements Serializable{
     @Column(name = "cash_value")
     private Float cashValue;
 
+    @ManyToOne(targetEntity = User.class)
+
 
     public int getId() {
         return id;
@@ -63,5 +65,10 @@ public class Account implements Serializable{
     public void setCash_value(Float cashValue) {
         this.cashValue = cashValue;
     }
+
+//    public Account(){}
+//
+//    public Account(int user_id)
+
 
 }

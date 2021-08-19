@@ -5,7 +5,6 @@ import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.Holdings;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.User;
 
 import java.util.Collection;
-import java.util.Optional;
 
 public interface PortfolioService {
     Collection<User> getAllUsers();
@@ -20,8 +19,13 @@ public interface PortfolioService {
     Collection<Account> getAccountsByUserId(int userId);
     Collection<Account> getAccountsByUserIdAndType(int userId, String type);
     Collection<Account> getAccountsByUserIdAndName(int userId, String name);
-    Optional<Account> getAccountsByID(int id);
+    Account getAccountsByID(int id);
 
     Collection<User> getUsersByFirstName(String firstName);
     Collection<User> getUsersByFirstNameAndLastName(String firstName, String lastName);
+
+    /* POST */
+    User addNewUser(User user);
+    Account addNewAccount(Account account);
+    Holdings addNewHoldings(Holdings holdings);
 }

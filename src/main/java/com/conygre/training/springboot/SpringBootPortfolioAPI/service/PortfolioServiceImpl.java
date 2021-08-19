@@ -6,6 +6,8 @@ import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.User;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.AccountRepository;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.HoldingsRepository;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.UserRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,16 +26,21 @@ public class PortfolioServiceImpl implements PortfolioService {
     @Autowired
     private HoldingsRepository holdingsRepository;
 
+    private static final Logger logger = LogManager.getLogger(PortfolioServiceImpl.class);
+
     @Override
     public Collection<User> getAllUsers() {
+        logger.info("getting all users");
         return userRepository.findAll();
     }
     @Override
     public Collection<Account> getAllAccounts() {
+        logger.info("getting all accounts");
         return accountRepository.findAll();
     }
     @Override
     public Collection<Holdings> getAllHoldings(){
+        logger.info("getting all holdings");
         return holdingsRepository.findAll();
     }
 
@@ -48,8 +55,13 @@ public class PortfolioServiceImpl implements PortfolioService {
     }
 
     @Override
-    public Optional<Account> getAccountsByID(int id){
-        return accountRepository.findById(id);
+    public Account getAccountsByID(int id){
+        Optional<Account> accountOptional = accountRepository.findById(id);
+        if (accountOptional.isPresent()) {
+            return accountOptional.get();
+        }
+        else return null;
+//        return accountRepository.findById(id);
     }
 
     @Override
@@ -76,4 +88,32 @@ public class PortfolioServiceImpl implements PortfolioService {
     public Collection<User> getUsersByFirstNameAndLastName(String firstName, String lastName){
         return userRepository.findUsersByFirstNameAndAndLastName(firstName, lastName);
     }
+
+//    @Override
+//    Iterable<Account> findAccountsByUserId(){
+//        return accountRepository.findAccountByUser_id(int user_id)
+//    }
+
+    @Override
+    public User addNewUser(User user){
+        user.setId(0);
+        return userRepository.save(user);
+    }
+
+    @Override
+    public Account addNewAccount(Account account){
+        account.setId(0);
+        return accountRepository.save(account);
+    }
+
+    @Override
+    public Holdings addNewHoldings(Holdings holdings) {
+        return null;
+    }
+
+//    @Override
+//    public Holdings addNewHoldings(Holdings holdings){
+//        holdings.setId(0);
+//        return HoldingsRepository.save(holdings);
+//    }
 }

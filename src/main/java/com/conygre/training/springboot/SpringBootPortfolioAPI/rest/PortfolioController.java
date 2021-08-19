@@ -1,7 +1,10 @@
 package com.conygre.training.springboot.SpringBootPortfolioAPI.rest;
 
 import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.*;
+import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.UserRepository;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.service.PortfolioService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +13,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/portfolio-manager")
+@CrossOrigin //Allows requests from all domains
 public class PortfolioController {
+
+    private static Logger logger = LogManager.getLogger();
 
     @Autowired
     private PortfolioService portfolioService;
@@ -49,7 +55,7 @@ public class PortfolioController {
 
     //Returns accounts with specific id
     @RequestMapping(value = "/{id}/accounts", method=RequestMethod.GET)
-    public Optional<Account> getAccounts(@PathVariable int id) {
+    public Account getAccounts(@PathVariable int id) {
         return portfolioService.getAccountsByID(id);
     }
 
@@ -88,5 +94,12 @@ public class PortfolioController {
     @RequestMapping(value = "/user/name/{firstName}+{lastName}", method=RequestMethod.GET)
     public Collection<User> getUsersByFirstNameAndLastName(@PathVariable String firstName, @PathVariable String lastName){
         return portfolioService.getUsersByFirstNameAndLastName(firstName, lastName);
+    }
+
+    /* USER POST METHODS */
+
+    @PostMapping("/users")
+    public void addNewUser(@RequestBody User newUser) {
+        portfolioService.addNewUser(newUser);
     }
 }
