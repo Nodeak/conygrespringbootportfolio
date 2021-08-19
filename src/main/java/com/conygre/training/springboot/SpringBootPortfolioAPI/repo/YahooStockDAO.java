@@ -25,4 +25,5 @@ public interface YahooStockDAO {
 
     public Map<String,BigDecimal> getAllHoldingPrices(Collection<Holdings> Current_Holdings) throws IOException;
 
+    public Double get_InvestmentValue();
 }

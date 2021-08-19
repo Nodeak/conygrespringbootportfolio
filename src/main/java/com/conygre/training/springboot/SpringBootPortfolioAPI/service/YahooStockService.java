@@ -19,6 +19,8 @@ import java.util.Optional;
 public class YahooStockService implements YahooStockDAO {
     private static final Logger logger = LogManager.getLogger(YahooStockService.class);
     private String name="";
+    Map<String,BigDecimal> Holding_Positions= new HashMap<>();
+    public double InvestmentValue;
 
     //class constructor which requires a default stock symbol
     YahooStockService(String S) throws IOException {
@@ -60,6 +62,11 @@ public class YahooStockService implements YahooStockDAO {
         return stock.getQuote().getPrice();
     }
 
+    @Override
+    public Double get_InvestmentValue(){
+        return InvestmentValue;
+    }
+
     //returns percent change from last 24hours
     @Override
     public BigDecimal get_PercentChange(String symbol) throws IOException{
@@ -91,15 +98,22 @@ public class YahooStockService implements YahooStockDAO {
     public Map<String,BigDecimal> getAllHoldingPrices(Collection<Holdings> Current_Holdings) throws IOException{
         logger.info("Mapping all holdings to current price");
 
-        Map<String,BigDecimal> Prices= new HashMap<>();
+        double temp=0;
+        this.InvestmentValue=0;
+
         Stock stock;
 
         for(Holdings h : Current_Holdings){
             stock=YahooFinance.get(h.getSymbol());
-            Prices.put(h.getSymbol(),stock.getQuote().getPrice());
+            Holding_Positions.put(h.getSymbol(),stock.getQuote().getPrice());
+
+            temp=stock.getQuote().getPrice().floatValue();
+            InvestmentValue=InvestmentValue+temp;
         }
 
-        return Prices;
+        return Holding_Positions;
     }
+
+
 
 }
