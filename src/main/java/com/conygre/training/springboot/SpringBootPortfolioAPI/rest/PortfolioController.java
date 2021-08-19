@@ -48,11 +48,13 @@ public class PortfolioController {
 
     /*  RETURNS HOLDINGS  */
 
+    //Returns all holdings for a given account
     @RequestMapping(value = "/holdings/accountId={accountId}", method=RequestMethod.GET)
     public Collection<Holdings> getHoldingsByAccountId(@PathVariable int accountId){
         return portfolioService.getHoldingsByAccountId(accountId);
     }
 
+    //Returns all holdings for a given account and type
     @RequestMapping(value = "/holdings/accountId={accountId}+type={type}", method=RequestMethod.GET)
     public Collection<Holdings> getHoldingsByAccountIdAndType(@PathVariable int accountId, @PathVariable String type){
         return portfolioService.getHoldingsByAccountIdAndType(accountId, type);
@@ -103,10 +105,54 @@ public class PortfolioController {
         return portfolioService.getUsersByFirstNameAndLastName(firstName, lastName);
     }
 
-    /* USER POST METHODS */
+    /* POST METHODS */
 
     @PostMapping("/users")
     public void addNewUser(@RequestBody User newUser) {
         portfolioService.addNewUser(newUser);
+    }
+
+    @PostMapping("/user/account")
+    public void addNewAccount(@RequestBody Account newAccount) {
+        portfolioService.addNewAccount(newAccount);
+    }
+
+    @PostMapping("/user/holdings")
+    public void addNewHoldings(@RequestBody Holdings newHoldings) {
+        portfolioService.addNewHoldings(newHoldings);
+    }
+
+    /* PUT METHODS */
+
+
+    /* DELETE METHODS */
+    @DeleteMapping("/{userId}")
+    public void deleteUser(@PathVariable("userId") int id) {
+        portfolioService.deleteGivenUser(id);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public void deleteUser(@RequestBody User user) {
+        portfolioService.deleteGivenUser(user);
+    }
+
+    @DeleteMapping("/{accountId}")
+    public void deleteAccount(@PathVariable("accountId") int id) {
+        portfolioService.deleteGivenAccount(id);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public void deleteAccount(@RequestBody Account account) {
+        portfolioService.deleteGivenAccount(account);
+    }
+
+    @DeleteMapping("/{holdingsId}")
+    public void deleteHoldings(@PathVariable("holdingsId") int id) {
+        portfolioService.deleteGivenHoldings(id);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public void deleteHoldings(@RequestBody Holdings holdings) {
+        portfolioService.deleteGivenHoldings(holdings);
     }
 }

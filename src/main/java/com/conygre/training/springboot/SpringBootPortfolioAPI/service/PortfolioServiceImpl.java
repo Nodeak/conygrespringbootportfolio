@@ -121,4 +121,37 @@ public class PortfolioServiceImpl implements PortfolioService {
 //        holdings.setId(0);
 //        return HoldingsRepository.save(holdings);
 //    }
+
+    @Override
+    public void deleteGivenUser(User user) {
+        userRepository.delete(user);
+    }
+
+    @Override
+    public void deleteGivenUser(int id) {
+        User toBeDeleted = userRepository.findById(id).get();
+        deleteGivenUser(toBeDeleted);
+    }
+
+    @Override
+    public void deleteGivenAccount(Account account) {
+        accountRepository.delete(account);
+    }
+
+    @Override
+    public void deleteGivenAccount(int id) {
+        Account toBeDeleted = accountRepository.findById(id).get();
+        deleteGivenAccount(toBeDeleted);
+    }
+
+    @Override
+    public void deleteGivenHoldings(Holdings holdings) {
+        holdingsRepository.delete(holdings);
+    }
+
+    @Override
+    public void deleteGivenHoldings(int id) {
+        Holdings toBeDeleted = holdingsRepository.findById(id).get();
+        deleteGivenHoldings(toBeDeleted);
+    }
 }

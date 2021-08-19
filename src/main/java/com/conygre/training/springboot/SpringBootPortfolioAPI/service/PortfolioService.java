@@ -29,4 +29,15 @@ public interface PortfolioService {
     User addNewUser(User user);
     Account addNewAccount(Account account);
     Holdings addNewHoldings(Holdings holdings);
+
+    /* PUT */
+
+
+    /* DELETE */
+    void deleteGivenUser(User user);
+    void deleteGivenUser(int id);
+    void deleteGivenAccount(Account account);
+    void deleteGivenAccount(int id);
+    void deleteGivenHoldings(Holdings holdings);
+    void deleteGivenHoldings(int id);
 }
