@@ -126,33 +126,33 @@ public class PortfolioController {
 
 
     /* DELETE METHODS */
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/users/{userId}")
     public void deleteUser(@PathVariable("userId") int id) {
         portfolioService.deleteGivenUser(id);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public void deleteUser(@RequestBody User user) {
-        portfolioService.deleteGivenUser(user);
-    }
+//    @RequestMapping(method = RequestMethod.DELETE)
+//    public void deleteUser(@RequestBody User user) {
+//        portfolioService.deleteGivenUser(user);
+//    }
 
-    @DeleteMapping("/{accountId}")
+    @DeleteMapping("/accounts/{accountId}")
     public void deleteAccount(@PathVariable("accountId") int id) {
         portfolioService.deleteGivenAccount(id);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public void deleteAccount(@RequestBody Account account) {
-        portfolioService.deleteGivenAccount(account);
-    }
+//    @RequestMapping(method = RequestMethod.DELETE)
+//    public void deleteAccount(@RequestBody Account account) {
+//        portfolioService.deleteGivenAccount(account);
+//    }
 
-    @DeleteMapping("/{holdingsId}")
+    @DeleteMapping("/holdings/{holdingsId}")
     public void deleteHoldings(@PathVariable("holdingsId") int id) {
         portfolioService.deleteGivenHoldings(id);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public void deleteHoldings(@RequestBody Holdings holdings) {
-        portfolioService.deleteGivenHoldings(holdings);
-    }
+//    @RequestMapping(method = RequestMethod.DELETE)
+//    public void deleteHoldings(@RequestBody Holdings holdings) {
+//        portfolioService.deleteGivenHoldings(holdings);
+//    }
 }
