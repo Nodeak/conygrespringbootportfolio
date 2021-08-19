@@ -3,6 +3,7 @@ package com.conygre.training.springboot.SpringBootPortfolioAPI.rest;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.*;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.UserRepository;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.service.PortfolioService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class PortfolioController {
     @Autowired
     private PortfolioService portfolioService;
 
+    @ApiOperation(value = "findAll", nickname = "findAll")
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<User> findAll() {
         return portfolioService.getCatalog();
