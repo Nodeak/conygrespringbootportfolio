@@ -7,6 +7,9 @@ import java.io.Serializable;
 public class Holdings implements Serializable {
 
     @Id
+    @Column(name = "id")
+    private int id;
+
     @Column(name = "account_id")
     private int accountId;
 
@@ -21,6 +24,14 @@ public class Holdings implements Serializable {
 
     @Column(name = "buy_price")
     private float buyPrice;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getAccount_id() {
         return accountId;
