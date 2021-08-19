@@ -23,14 +23,14 @@ public class YahooStockService implements YahooStockDAO {
     public double InvestmentValue;
 
     //class constructor which requires a default stock symbol
-    YahooStockService(String S) throws IOException {
-        Stock temp_Stock= YahooFinance.get(S);
-
-        if(temp_Stock.isValid()){
-            this.name=S;
-        }
-
-    }
+//    YahooStockService(String S) throws IOException {
+//        Stock temp_Stock= YahooFinance.get(S);
+//
+//        if(temp_Stock.isValid()){
+//            this.name=S;
+//        }
+//
+//    }
 
     //gets current stock
     @Override
