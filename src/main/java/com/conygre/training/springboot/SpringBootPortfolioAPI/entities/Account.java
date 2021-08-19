@@ -12,7 +12,7 @@ public class Account implements Serializable{
     private int id;
 
     @Column(name = "user_id")
-    private int user_id;
+    private int userId;
 
     @Column(name = "type")
     private String type;
@@ -21,7 +21,7 @@ public class Account implements Serializable{
     private String name;
 
     @Column(name = "cash_value")
-    private Float cash_value;
+    private Float cashValue;
 
 
     public int getId() {
@@ -33,11 +33,11 @@ public class Account implements Serializable{
     }
 
     public int getUser_id() {
-        return user_id;
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser_id(int userId) {
+        this.userId = userId;
     }
 
     public String getType() {
@@ -57,11 +57,11 @@ public class Account implements Serializable{
     }
 
     public Float getCash_value() {
-        return cash_value;
+        return cashValue;
     }
 
-    public void setCash_value(Float cash_value) {
-        this.cash_value = cash_value;
+    public void setCash_value(Float cashValue) {
+        this.cashValue = cashValue;
     }
 
 }

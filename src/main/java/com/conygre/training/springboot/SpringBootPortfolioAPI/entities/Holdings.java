@@ -8,7 +8,7 @@ public class Holdings implements Serializable {
 
     @Id
     @Column(name = "account_id")
-    private int account_id;
+    private int accountId;
 
     @Column(name = "type")
     private String type;
@@ -20,14 +20,14 @@ public class Holdings implements Serializable {
     private String symbol;
 
     @Column(name = "buy_price")
-    private float buy_price;
+    private float buyPrice;
 
     public int getAccount_id() {
-        return account_id;
+        return accountId;
     }
 
-    public void setAccount_id(int account_id) {
-        this.account_id = account_id;
+    public void setAccount_id(int accountId) {
+        this.accountId = accountId;
     }
 
     public String getType() {
@@ -55,10 +55,10 @@ public class Holdings implements Serializable {
     }
 
     public float getBuy_price() {
-        return buy_price;
+        return buyPrice;
     }
 
-    public void setBuy_price(float buy_price) {
-        this.buy_price = buy_price;
+    public void setBuy_price(float buyPrice) {
+        this.buyPrice = buyPrice;
     }
 }

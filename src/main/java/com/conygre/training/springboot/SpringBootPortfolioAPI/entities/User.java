@@ -15,13 +15,13 @@ public class User implements Serializable{
     private int id;
 
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
 
     @Column(name = "last_name")
-    private String last_name;
+    private String lastName;
 
     @Column(name = "net_worth")
-    private float net_worth;
+    private float netWorth;
 
     public int getId() {
         return id;
@@ -32,27 +32,27 @@ public class User implements Serializable{
     }
 
     public String getFirst_name() {
-        return first_name;
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirst_name(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLast_name() {
-        return last_name;
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLast_name(String lastName) {
+        this.lastName = lastName;
     }
 
     public float getNet_worth() {
-        return net_worth;
+        return netWorth;
     }
 
-    public void setNet_worth(float net_worth) {
-        this.net_worth = net_worth;
+    public void setNet_worth(float netWorth) {
+        this.netWorth = netWorth;
     }
 
 

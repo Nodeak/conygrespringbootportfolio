@@ -15,4 +15,7 @@ import java.util.Collection;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
     //Collection<Account> findAccountsByUser_idAndType(int user_id, String type);
+    Collection<Account> findAccountsByUserId(int userId);
+    Collection<Account> findAccountByUserIdAndType(int userId, String type);
+    Collection<Account> findAccountsByUserIdAndAndName(int userId, String name);
 }
