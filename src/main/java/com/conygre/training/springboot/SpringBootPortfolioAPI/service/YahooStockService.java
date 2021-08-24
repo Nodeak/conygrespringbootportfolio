@@ -19,8 +19,6 @@ import java.util.Optional;
 public class YahooStockService implements YahooStockDAO {
     private static final Logger logger = LogManager.getLogger(YahooStockService.class);
     private String name="";
-    Map<String,BigDecimal> Holding_Positions= new HashMap<>();
-    public double InvestmentValue;
 
     //class constructor which requires a default stock symbol
 //    YahooStockService(String S) throws IOException {
@@ -54,66 +52,54 @@ public class YahooStockService implements YahooStockDAO {
 
     //gets stock price for current stock name
     @Override
-    public BigDecimal getPrice() throws IOException{
+    public float getPrice() throws IOException{
         logger.info("Getting "+name+" price");
 
         Stock stock=YahooFinance.get(this.name);
 
-        return stock.getQuote().getPrice();
-    }
-
-    @Override
-    public Double get_InvestmentValue(){
-        return InvestmentValue;
+        return stock.getQuote().getPrice().floatValue();
     }
 
     //returns percent change from last 24hours
     @Override
-    public BigDecimal get_PercentChange(String symbol) throws IOException{
+    public float get_PercentChange(String symbol) throws IOException{
         logger.info("Getting "+symbol+"day percent change");
 
         Stock stock=YahooFinance.get(symbol);
 
-        return stock.getQuote().getChangeInPercent();
+        return stock.getQuote().getChangeInPercent().floatValue();
     }
 
     //returns map of market indexes and their prices (eg. Nasdaq:14500, Dow:34920)
     @Override
-    public Map<String,BigDecimal> Market_Indexes() throws IOException{
+    public Map<String,Float> Market_Indexes() throws IOException{
         logger.info("Getting Top Market Indexes");
 
-        Map<String,BigDecimal> Market_Movers= new HashMap<>();
+        Map<String,Float> Market_Movers= new HashMap<>();
 
         Stock Marketindex=YahooFinance.get("COMP");
-        Market_Movers.put("COMP",Marketindex.getQuote().getPrice());
+        Market_Movers.put("COMP",Marketindex.getQuote().getPrice().floatValue());
 
         Marketindex=YahooFinance.get("DJIA");
-        Market_Movers.put("DJIA",Marketindex.getQuote().getPrice());
+        Market_Movers.put("DJIA",Marketindex.getQuote().getPrice().floatValue());
 
         return Market_Movers;
-    }  //TODO add other indexes such as S&P500
+    }
 
     //Returns accounts current holdings and maps them to their current price
     @Override
-    public Map<String,BigDecimal> getAllHoldingPrices(Collection<Holdings> Current_Holdings) throws IOException{
+    public Map<String,Float> getAllHoldingPrices(Collection<Holdings> Current_Holdings) throws IOException{
         logger.info("Mapping all holdings to current price");
 
-        double temp=0;
-        this.InvestmentValue=0;
-
+        Map<String,Float> Prices= new HashMap<>();
         Stock stock;
 
         for(Holdings h : Current_Holdings){
             stock=YahooFinance.get(h.getSymbol());
-            Holding_Positions.put(h.getSymbol(),stock.getQuote().getPrice());
-
-            temp=stock.getQuote().getPrice().floatValue();
-            InvestmentValue=InvestmentValue+temp;
+            Prices.put(h.getSymbol(),stock.getQuote().getPrice().floatValue());
         }
 
-        return Holding_Positions;
+        return Prices;
     }
-
-
 
 }

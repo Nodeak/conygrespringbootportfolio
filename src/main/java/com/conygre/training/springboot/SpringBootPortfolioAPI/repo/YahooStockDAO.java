@@ -17,13 +17,13 @@ public interface YahooStockDAO {
 
     public void set_StockSymbol(String symbol) throws IOException;
 
-    public BigDecimal getPrice() throws IOException;
+    public float getPrice() throws IOException;
 
-    public BigDecimal get_PercentChange(String symbol) throws IOException;
+    public float get_PercentChange(String symbol) throws IOException;
 
-    public Map<String,BigDecimal> Market_Indexes() throws IOException;
+    public Map<String,Float> Market_Indexes() throws IOException;
 
-    public Map<String,BigDecimal> getAllHoldingPrices(Collection<Holdings> Current_Holdings) throws IOException;
+    public Map<String,Float> getAllHoldingPrices(Collection<Holdings> Current_Holdings) throws IOException;
 
     public Double get_InvestmentValue();
 }
