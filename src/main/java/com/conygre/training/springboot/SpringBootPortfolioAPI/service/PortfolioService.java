@@ -32,5 +32,5 @@ public interface PortfolioService {
     Account addNewAccount(Account account);
     Holdings addNewHoldings(Holdings holdings);
 
-    void Update_Price(int id) throws IOException;
+    void Update_Price() throws IOException;
 }

@@ -122,18 +122,20 @@ public class PortfolioServiceImpl implements PortfolioService {
 
 
     @Override
-    public void Update_Price(int id) throws IOException {
+    public void Update_Price() throws IOException {
+        int id=1;
+        Holdings existing_Holding;
+        Stock stock;
 
-        //checks if id is valid
-        if(holdingsRepository.findById(id).isPresent()){
-
-            Holdings existing_Holding=holdingsRepository.getById(id); //gets holdings entry from collection
-            Stock stock= YahooFinance.get(existing_Holding.getSymbol()); //looks up stock info
+        while(holdingsRepository.findById(id).isPresent())
+        {
+            existing_Holding=holdingsRepository.getById(id); //gets holdings entry from collection
+            stock= YahooFinance.get(existing_Holding.getSymbol()); //looks up stock info
 
             existing_Holding.setBuy_price(stock.getQuote().getPrice().floatValue()); //changes price
             holdingsRepository.save(existing_Holding); //saves updated entry
 
-
+            id+=1;
         }
     }
 
