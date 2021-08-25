@@ -86,7 +86,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 //    }
 
 
-
+    //updates current price and percent change over the last 24 hours
     @Override
     public void Update_Price() throws IOException {
         int id=1;
@@ -100,8 +100,12 @@ public class PortfolioServiceImpl implements PortfolioService {
 
             existing_Holding.setCurPrice(stock.getQuote().getPrice().floatValue()); //changes price
             holdingsRepository.save(existing_Holding);                               //saves updated entry
-
             id+=1;
         }
     }
+//    @Override
+//    public Holdings addNewHoldings(Holdings holdings){
+//        holdings.setId(0);
+//        return HoldingsRepository.save(holdings);
+//    }
 }
