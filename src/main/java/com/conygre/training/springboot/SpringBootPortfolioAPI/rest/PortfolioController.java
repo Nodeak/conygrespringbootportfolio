@@ -18,9 +18,8 @@ import java.util.Optional;
 public class PortfolioController {
 
     private static Logger logger = LogManager.getLogger();
+    @Autowired private PortfolioService portfolioService;
 
-    @Autowired
-    private PortfolioService portfolioService;
 
     @ApiOperation(value = "findAll", nickname = "findAll")
     @RequestMapping(method = RequestMethod.GET)
@@ -28,85 +27,47 @@ public class PortfolioController {
         return portfolioService.getCatalog();
     }
 
-    //Returns all users
     @GetMapping("/users")
-    public Collection<User> getUsers() {
+    public Collection<User> getUsers(){
         return portfolioService.getAllUsers();
     }
 
-    //Returns all accounts
-    @GetMapping("/user/accounts")
-    public Collection<Account> getAccounts() {
-        return portfolioService.getAllAccounts();
-    }
-
-    //Returns all holdings
-    @GetMapping("/user/holdings")
-    public Collection<Holdings> getHoldings() {
-        return portfolioService.getAllHoldings();
-    }
-
-    /*  RETURNS HOLDINGS  */
-
-    @RequestMapping(value = "/holdings/accountId={accountId}", method=RequestMethod.GET)
-    public Collection<Holdings> getHoldingsByAccountId(@PathVariable int accountId){
-        return portfolioService.getHoldingsByAccountId(accountId);
-    }
-
-    @RequestMapping(value = "/holdings/accountId={accountId}+type={type}", method=RequestMethod.GET)
-    public Collection<Holdings> getHoldingsByAccountIdAndType(@PathVariable int accountId, @PathVariable String type){
-        return portfolioService.getHoldingsByAccountIdAndType(accountId, type);
-    }
-
-    /*   RETURNS ACCOUNTS  */
-
-    //Returns accounts with specific id
-    @RequestMapping(value = "/{id}/accounts", method=RequestMethod.GET)
-    public Account getAccounts(@PathVariable int id) {
-        return portfolioService.getAccountsByID(id);
-    }
-
+    // --------------- Regarding Specific Accounts ---------------
     //Returns accounts with specific userId
-    @RequestMapping(value = "/accounts/userId={userId}", method=RequestMethod.GET)
+    @RequestMapping(value = "/{userId}/accounts", method=RequestMethod.GET)
     public Collection<Account> getAccountsByUserId(@PathVariable int userId){
         return portfolioService.getAccountsByUserId(userId);
     }
 
-    //@RequestMapping(value = "/{user_id}/accounts?type={type}", method=RequestMethod.GET)
-    //public Collection<Account> getAccountsByUserID(@PathVariable int user_id, String type) {
-    //    return portfolioService.findAccountByUser_idAndType(user_id, type);
-    //}
-
-    //Returns Accounts with specific userId and account type
-    @RequestMapping(value = "/accounts/{userId}+type={type}", method=RequestMethod.GET)
-    public Collection<Account> getAccountsByUserIdAndType(@PathVariable int userId, @PathVariable String type){
-        return portfolioService.getAccountsByUserIdAndType(userId, type);
+    //Returns accounts with specific userId
+    @RequestMapping(value = "/{userId}/accounts/type={accountType}", method=RequestMethod.GET)
+    public Collection<Account> getAccountsByUserIdAndType(@PathVariable int userId, @PathVariable String accountType){
+        return portfolioService.getAccountsByUserIdAndType(userId, accountType);
     }
 
-    //Returns Accounts with specific userId and account name
-    @RequestMapping(value = "/accounts/{userId}+name={name}", method=RequestMethod.GET)
-    public Collection<Account> getAccountsByUserIdAndName(@PathVariable int userId, @PathVariable String name){
-        return portfolioService.getAccountsByUserIdAndName(userId, name);
+
+    // --------------- Regarding Specific Accounts ---------------
+    //Returns information regarding a specfic account
+    @RequestMapping(value = "/accounts/{accountId}", method=RequestMethod.GET)
+    public Account getAccountById(@PathVariable int accountId){
+        return portfolioService.getAccountById(accountId);
     }
 
-    /*  RETURNS USERS */
-
-    //Returns Users with specific firstName
-    @RequestMapping(value = "/user/firstname/{firstName}", method=RequestMethod.GET)
-    public Collection<User> getUsersByFirstName(@PathVariable String firstName){
-        return portfolioService.getUsersByFirstName(firstName);
+    //Returns accounts with specific userId
+    @RequestMapping(value = "/accounts/{accountId}/holdings", method=RequestMethod.GET)
+    public Collection<Holdings> getHoldingsByAccountId(@PathVariable int accountId){
+        return portfolioService.getHoldingsByAccountId(accountId);
     }
 
-    //Returns Users with specific names: firstName and lastName
-    @RequestMapping(value = "/user/name/{firstName}+{lastName}", method=RequestMethod.GET)
-    public Collection<User> getUsersByFirstNameAndLastName(@PathVariable String firstName, @PathVariable String lastName){
-        return portfolioService.getUsersByFirstNameAndLastName(firstName, lastName);
+    @RequestMapping(value = "/accounts/{accountId}/holdings/type={stockType}", method=RequestMethod.GET)
+    public Collection<Holdings> getHoldingsByAccountIdAndType(int accountId, String stockType){
+        return portfolioService.getHoldingsByAccountIdAndType(accountId, stockType);
     }
 
-    /* USER POST METHODS */
-
-    @PostMapping("/users")
-    public void addNewUser(@RequestBody User newUser) {
-        portfolioService.addNewUser(newUser);
-    }
+//    /* USER POST METHODS */
+//
+//    @PostMapping("/users")
+//    public void addNewUser(@RequestBody User newUser) {
+//        portfolioService.addNewUser(newUser);
+//    }
 }

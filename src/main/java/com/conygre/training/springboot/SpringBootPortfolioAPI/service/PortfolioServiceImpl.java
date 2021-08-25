@@ -20,61 +20,31 @@ import java.util.Optional;
 @Service
 public class PortfolioServiceImpl implements PortfolioService {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private AccountRepository accountRepository;
-
-    @Autowired
-    private HoldingsRepository holdingsRepository;
-
+    @Autowired private UserRepository userRepository;
+    @Autowired private AccountRepository accountRepository;
+    @Autowired private HoldingsRepository holdingsRepository;
     private static final Logger logger = LogManager.getLogger(PortfolioServiceImpl.class);
+
 
     @Override
     public Iterable<User> getCatalog() {
         return userRepository.findAll();
     }
 
-    @Override
-    public Collection<User> getAllUsers() {
-        logger.info("getting all users");
-        return userRepository.findAll();
-    }
-    @Override
-    public Collection<Account> getAllAccounts() {
-        logger.info("getting all accounts");
-        return accountRepository.findAll();
-    }
-    @Override
-    public Collection<Holdings> getAllHoldings(){
-        logger.info("getting all holdings");
-        return holdingsRepository.findAll();
-    }
 
     @Override
-    public Collection<Holdings> getHoldingsByAccountId(int accountId){
-        return holdingsRepository.getHoldingsByAccountId(accountId);
-    }
+    public Collection<User> getAllUsers(){ return userRepository.findAll(); }
 
-    @Override
-    public Collection<Holdings> getHoldingsByAccountIdAndType(int accountId, String type){
-        return holdingsRepository.getHoldingsByAccountIdAndType(accountId, type);
-    }
 
-    @Override
-    public Account getAccountsByID(int id){
-        Optional<Account> accountOptional = accountRepository.findById(id);
-        if (accountOptional.isPresent()) {
-            return accountOptional.get();
-        }
-        else return null;
-//        return accountRepository.findById(id);
-    }
-
+    // --------------- Regarding Specific Users ---------------
     @Override
     public Collection<Account> getAccountsByUserId(int userId){
         return accountRepository.findAccountsByUserId(userId);
+    }
+
+    @Override
+    public Account getAccountByUserIdAndAccountId(int userId, int accountId){
+        return accountRepository.findAccountByUserIdAndId(userId, accountId);
     }
 
     @Override
@@ -82,42 +52,38 @@ public class PortfolioServiceImpl implements PortfolioService {
         return accountRepository.findAccountByUserIdAndType(userId, type);
     }
 
+    // --------------- Regarding Specific Accounts ---------------
     @Override
-    public Collection<Account> getAccountsByUserIdAndName(int userId, String name){
-        return accountRepository.findAccountsByUserIdAndAndName(userId, name);
+    public Account getAccountById(int accountId){
+        return accountRepository.findAccountById(accountId);
     }
 
     @Override
-    public Collection<User> getUsersByFirstName(String firstName){
-        return userRepository.findUsersByFirstName(firstName);
+    public Collection<Holdings> getHoldingsByAccountId(int accountId){
+        return holdingsRepository.findHoldingsByAccountId(accountId);
     }
 
     @Override
-    public Collection<User> getUsersByFirstNameAndLastName(String firstName, String lastName){
-        return userRepository.findUsersByFirstNameAndAndLastName(firstName, lastName);
+    public Collection<Holdings> getHoldingsByAccountIdAndType(int accountId, String stockType){
+        return holdingsRepository.findHoldingsByAccountIdAndType(accountId, stockType);
     }
 
 //    @Override
-//    Iterable<Account> findAccountsByUserId(){
-//        return accountRepository.findAccountByUser_id(int user_id)
+//    public User addNewUser(User user){
+//        user.setId(0);
+//        return userRepository.save(user);
 //    }
-
-    @Override
-    public User addNewUser(User user){
-        user.setId(0);
-        return userRepository.save(user);
-    }
-
-    @Override
-    public Account addNewAccount(Account account){
-        account.setId(0);
-        return accountRepository.save(account);
-    }
-
-    @Override
-    public Holdings addNewHoldings(Holdings holdings) {
-        return null;
-    }
+//
+//    @Override
+//    public Account addNewAccount(Account account){
+//        account.setId(0);
+//        return accountRepository.save(account);
+//    }
+//
+//    @Override
+//    public Holdings addNewHoldings(Holdings holdings) {
+//        return null;
+//    }
 
 
     //updates current price and percent change over the last 24 hours
@@ -129,22 +95,14 @@ public class PortfolioServiceImpl implements PortfolioService {
 
         while(holdingsRepository.findById(id).isPresent())
         {
-            existing_Holding=holdingsRepository.getById(id); //gets holdings entry from collection
-            stock=YahooFinance.get(existing_Holding.getSymbol()); //looks up stock info
+            existing_Holding = holdingsRepository.getById(id);                       //gets holdings entry from collection
+            stock = YahooFinance.get(existing_Holding.getSymbol());                  //looks up stock info
 
-            existing_Holding.setCurPrice(stock.getQuote().getPrice().floatValue());
-            existing_Holding.setPercentChange(stock.getQuote().getChangeInPercent().floatValue());
-            holdingsRepository.save(existing_Holding); //saves updated entry
-
+            existing_Holding.setCurPrice(stock.getQuote().getPrice().floatValue()); //changes price
+            holdingsRepository.save(existing_Holding);                               //saves updated entry
             id+=1;
         }
     }
-
-
-
-
-
-
 //    @Override
 //    public Holdings addNewHoldings(Holdings holdings){
 //        holdings.setId(0);
