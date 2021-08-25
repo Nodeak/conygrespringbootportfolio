@@ -30,5 +30,4 @@ public interface PortfolioService {
 
     void Update_Price() throws IOException;
     //float get_PercentChange(String symbol) throws IOException;
-    Map<String,Float> Market_Indexes() throws IOException;
 }
