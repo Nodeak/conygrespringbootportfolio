@@ -3,7 +3,9 @@ package com.conygre.training.springboot.SpringBootPortfolioAPI.service;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.Account;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.Holdings;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.User;
+import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.HoldingsRepository;
 
+import java.io.IOException;
 import java.util.Collection;
 
 public interface PortfolioService {
@@ -29,4 +31,6 @@ public interface PortfolioService {
     User addNewUser(User user);
     Account addNewAccount(Account account);
     Holdings addNewHoldings(Holdings holdings);
+
+    void Update_Price(int id) throws IOException;
 }

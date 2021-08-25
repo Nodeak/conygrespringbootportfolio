@@ -10,7 +10,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -115,6 +118,27 @@ public class PortfolioServiceImpl implements PortfolioService {
     public Holdings addNewHoldings(Holdings holdings) {
         return null;
     }
+
+
+
+    @Override
+    public void Update_Price(int id) throws IOException {
+
+        //checks if id is valid
+        if(holdingsRepository.findById(id).isPresent()){
+
+            Holdings existing_Holding=holdingsRepository.getById(id); //gets holdings entry from collection
+            Stock stock= YahooFinance.get(existing_Holding.getSymbol()); //looks up stock info
+
+            existing_Holding.setBuy_price(stock.getQuote().getPrice().floatValue()); //changes price
+            holdingsRepository.save(existing_Holding); //saves updated entry
+
+
+        }
+    }
+
+
+
 
 //    @Override
 //    public Holdings addNewHoldings(Holdings holdings){
