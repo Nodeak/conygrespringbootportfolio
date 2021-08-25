@@ -97,7 +97,7 @@
 //        return Market_Movers;
 //    }
 //
-//    //Returns accounts current holdings and maps them to their current price
+    //Returns accounts current holdings and maps them to their current price
 //    @Override
 //    public Map<String,Float> getAllHoldingPrices(Collection<Holdings> Current_Holdings) throws IOException{
 //        logger.info("Mapping all holdings to current price");

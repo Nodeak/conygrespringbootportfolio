@@ -99,4 +99,16 @@ public class Holdings implements Serializable {
     }
 
 
+    @Column(name = "percent_change")
+    private float percentChange;
+
+    public float getPercentChange() {
+        return percentChange;
+    }
+
+    public void setPercentChange(float percentChange) {
+        this.percentChange = percentChange;
+    }
+
+
 }
