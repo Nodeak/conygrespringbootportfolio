@@ -132,7 +132,7 @@ public class PortfolioServiceImpl implements PortfolioService {
             existing_Holding=holdingsRepository.getById(id); //gets holdings entry from collection
             stock= YahooFinance.get(existing_Holding.getSymbol()); //looks up stock info
 
-            existing_Holding.setCurrent_price(stock.getQuote().getPrice().floatValue()); //changes price
+            existing_Holding.setCurPrice(stock.getQuote().getPrice().floatValue()); //changes price
             holdingsRepository.save(existing_Holding); //saves updated entry
 
             id+=1;

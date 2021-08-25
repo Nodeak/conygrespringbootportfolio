@@ -11,26 +11,17 @@ public class Holdings implements Serializable {
     @Column(name = "id")
     private int id;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
     @Column(name = "account_id")
     private int accountId;
-
-    @Column(name = "type")
-    private String type;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "symbol")
-    private String symbol;
-
-    @Column(name = "buy_price")
-    private float buyPrice;
-
-    @Column(name = "cur_price")
-    private float curPrice;
-
-    @Column(name = "buy_date")
-    private Date buyDate;
 
     public int getAccountId() {
         return accountId;
@@ -40,37 +31,8 @@ public class Holdings implements Serializable {
         this.accountId = accountId;
     }
 
-    public float getBuyPrice() {
-        return buyPrice;
-    }
-
-    public void setBuyPrice(float buyPrice) {
-        this.buyPrice = buyPrice;
-    }
-
-    public float getCurPrice() {
-        return curPrice;
-    }
-
-    public void setCurPrice(float curPrice) {
-        this.curPrice = curPrice;
-    }
-
-    public Date getBuyDate() {
-        return buyDate;
-    }
-
-    public void setBuyDate(Date buyDate) {
-        this.buyDate = buyDate;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    @Column(name = "type")
+    private String type;
 
     public String getType() {
         return type;
@@ -80,6 +42,9 @@ public class Holdings implements Serializable {
         this.type = type;
     }
 
+    @Column(name = "name")
+    private String name;
+
     public String getName() {
         return name;
     }
@@ -87,6 +52,9 @@ public class Holdings implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Column(name = "symbol")
+    private String symbol;
 
     public String getSymbol() {
         return symbol;
@@ -96,11 +64,39 @@ public class Holdings implements Serializable {
         this.symbol = symbol;
     }
 
-    public float getBuy_price() {
+
+    @Column(name = "buy_price")
+    private float buyPrice;
+
+    public float getBuyPrice() {
         return buyPrice;
     }
 
-    public void setBuy_price(float buyPrice) {
+    public void setBuyPrice(float buyPrice) {
         this.buyPrice = buyPrice;
     }
+
+    @Column(name = "cur_price")
+    private float curPrice;
+
+    public float getCurPrice() {
+        return curPrice;
+    }
+
+    public void setCurPrice(float curPrice) {
+        this.curPrice = curPrice;
+    }
+
+    @Column(name = "buy_date")
+    private Date buyDate;
+
+    public Date getBuyDate() {
+        return buyDate;
+    }
+
+    public void setBuyDate(Date buyDate) {
+        this.buyDate = buyDate;
+    }
+
+
 }
