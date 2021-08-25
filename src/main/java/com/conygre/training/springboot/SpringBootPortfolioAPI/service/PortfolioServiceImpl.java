@@ -120,7 +120,7 @@ public class PortfolioServiceImpl implements PortfolioService {
     }
 
 
-
+    //updates current price and percent change over the last 24 hours
     @Override
     public void Update_Price() throws IOException {
         int id=1;
@@ -130,9 +130,10 @@ public class PortfolioServiceImpl implements PortfolioService {
         while(holdingsRepository.findById(id).isPresent())
         {
             existing_Holding=holdingsRepository.getById(id); //gets holdings entry from collection
-            stock= YahooFinance.get(existing_Holding.getSymbol()); //looks up stock info
+            stock=YahooFinance.get(existing_Holding.getSymbol()); //looks up stock info
 
-            existing_Holding.setCurPrice(stock.getQuote().getPrice().floatValue()); //changes price
+            existing_Holding.setCurPrice(stock.getQuote().getPrice().floatValue());
+            existing_Holding.setPercentChange(stock.getQuote().getChangeInPercent().floatValue());
             holdingsRepository.save(existing_Holding); //saves updated entry
 
             id+=1;
@@ -140,11 +141,6 @@ public class PortfolioServiceImpl implements PortfolioService {
     }
 
 
-//    @Override
-//    public float get_PercentChange(String symbol) throws IOException{
-//        Stock stock=YahooFinance.get(symbol);
-//        return stock.getQuote().getChangeInPercent().floatValue();
-//    }
 
 
 
