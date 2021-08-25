@@ -33,4 +33,5 @@ public interface PortfolioService {
     Holdings addNewHoldings(Holdings holdings);
 
     void Update_Price() throws IOException;
+    //float get_PercentChange(String symbol) throws IOException;
 }
