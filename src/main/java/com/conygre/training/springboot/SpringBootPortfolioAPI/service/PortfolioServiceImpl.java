@@ -15,6 +15,8 @@ import yahoofinance.YahooFinance;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -137,6 +139,20 @@ public class PortfolioServiceImpl implements PortfolioService {
 
             id+=1;
         }
+    }
+
+    @Override
+    public Map<String,Float> Market_Indexes() throws IOException{
+
+        Map<String,Float> Market_Movers= new HashMap<>();
+
+        Stock Marketindex=YahooFinance.get("COMP");
+        Market_Movers.put("COMP",Marketindex.getQuote().getPrice().floatValue());
+
+        Marketindex=YahooFinance.get("DJIA"); //dow jones
+        Market_Movers.put("DJIA",Marketindex.getQuote().getPrice().floatValue());
+
+        return Market_Movers;
     }
 
 
