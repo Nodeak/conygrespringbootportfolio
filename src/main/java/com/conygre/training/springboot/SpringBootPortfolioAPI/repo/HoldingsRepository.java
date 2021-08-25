@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Collection;
 
 public interface HoldingsRepository extends JpaRepository<Holdings, Integer> {
-    Collection<Holdings> getHoldingsByAccountId(int accountId);
-    Collection<Holdings> getHoldingsByAccountIdAndType(int accountId, String type);
+    Collection<Holdings> findHoldingsByAccountId(int accountId);
+    Collection<Holdings> findHoldingsByAccountIdAndType(int accountId, String type);
 }
