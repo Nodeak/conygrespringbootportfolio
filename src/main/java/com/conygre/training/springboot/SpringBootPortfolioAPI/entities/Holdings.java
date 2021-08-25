@@ -25,6 +25,9 @@ public class Holdings implements Serializable {
     @Column(name = "buy_price")
     private float buyPrice;
 
+    @Column(name="current_price")
+    private float currentPrice;
+
     public int getId() {
         return id;
     }
@@ -71,5 +74,13 @@ public class Holdings implements Serializable {
 
     public void setBuy_price(float buyPrice) {
         this.buyPrice = buyPrice;
+    }
+
+    public float getCurrent_price() {
+        return currentPrice;
+    }
+
+    public void setCurrent_price(float currentPrice) {
+        this.currentPrice = currentPrice;
     }
 }
