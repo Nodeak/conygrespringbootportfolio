@@ -7,6 +7,7 @@ import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.HoldingsRepos
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Map;
 
 public interface PortfolioService {
     Iterable<User> getCatalog();
