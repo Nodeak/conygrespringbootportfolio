@@ -7,17 +7,17 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name="marketMovers")
+@Table(name="marketmovers")
 public class MarketMovers implements Serializable {
 
     @Id
     @Column(name = "symbol")
     private String symbol;
 
-    @Column(name = "currentPrice")
+    @Column(name = "current_price")
     private float currentPrice;
 
-    @Column(name = "percentChange")
+    @Column(name = "percent_change")
     private float percentChange;
 
     public String getSymbol() {

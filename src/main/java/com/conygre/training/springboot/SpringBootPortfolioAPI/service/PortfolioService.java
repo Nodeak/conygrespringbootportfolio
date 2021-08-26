@@ -24,7 +24,7 @@ public interface PortfolioService {
     Account getAccountById(int accountId);
     Collection<Holdings> getHoldingsByAccountId(int accountId);
     Collection<Holdings> getHoldingsByAccountIdAndType(int accountId, String type);
-    Collection<MarketMovers> get_AllMovers();
+    Collection<MarketMovers> getAllMovers();
 
     // --------------- Updating Data ----------------
     void updateStockPrices() throws IOException;

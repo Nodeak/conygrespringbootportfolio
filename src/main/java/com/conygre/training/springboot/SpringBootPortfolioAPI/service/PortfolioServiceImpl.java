@@ -31,7 +31,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 
     // --------------- Market Movers ---------------
 
-    public Collection<MarketMovers> get_AllMovers() {
+    public Collection<MarketMovers> getAllMovers() {
         return moversRepository.findAll();
     }
 

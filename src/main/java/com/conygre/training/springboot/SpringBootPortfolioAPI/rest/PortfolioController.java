@@ -36,7 +36,7 @@ public class PortfolioController {
 
     @GetMapping("/marketmovers")
     public Collection<MarketMovers> getMovers(){
-        return portfolioService.get_AllMovers();
+        return portfolioService.getAllMovers();
     }
 
     // --------------- Regarding Specific Accounts ---------------
