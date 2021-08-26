@@ -1,7 +1,6 @@
 package com.conygre.training.springboot.SpringBootPortfolioAPI.rest;
 
 import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.*;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.UserRepository;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.service.PortfolioService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
@@ -9,10 +8,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.sound.midi.SysexMessage;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/portfolio-manager")
@@ -71,6 +68,11 @@ public class PortfolioController {
     public Collection<Holdings> getHoldingsByAccountIdAndType(int accountId, String stockType) throws IOException {
         portfolioService.updateStockPrices();
         return portfolioService.getHoldingsByAccountIdAndType(accountId, stockType);
+    }
+
+    @RequestMapping(value = "/accounts/{accountId}/history", method=RequestMethod.GET)
+    public Collection<AccountValueHistory> getAccountHistory(@PathVariable int accountId){
+        return portfolioService.getAccountHistory(accountId);
     }
 
     @RequestMapping(value = "/current-prices", method=RequestMethod.GET)

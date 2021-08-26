@@ -1,13 +1,8 @@
 package com.conygre.training.springboot.SpringBootPortfolioAPI.service;
 
-import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.Account;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.Holdings;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.MarketMovers;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.User;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.AccountRepository;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.HoldingsRepository;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.MoversRepository;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.UserRepository;
+import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.*;
+import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.*;
+import com.sun.xml.bind.annotation.OverrideAnnotationOf;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +12,6 @@ import yahoofinance.YahooFinance;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
 public class PortfolioServiceImpl implements PortfolioService {
@@ -26,6 +20,7 @@ public class PortfolioServiceImpl implements PortfolioService {
     @Autowired private AccountRepository accountRepository;
     @Autowired private HoldingsRepository holdingsRepository;
     @Autowired private MoversRepository moversRepository;
+    @Autowired private AccountValueHistoryRepository accountValueHistoryRepository;
     private static final Logger logger = LogManager.getLogger(PortfolioServiceImpl.class);
 
 
@@ -56,8 +51,6 @@ public class PortfolioServiceImpl implements PortfolioService {
 
     }
     // -------------------- END --------------------
-
-
 
     @Override
     public Iterable<User> getCatalog() {
@@ -101,18 +94,11 @@ public class PortfolioServiceImpl implements PortfolioService {
         return holdingsRepository.findHoldingsByAccountIdAndType(accountId, stockType);
     }
 
-//    @Override
-//    public User addNewUser(User user){
-//        user.setId(0);
-//        return userRepository.save(user);
-//    }
-//
-//    @Override
-//    public Account addNewAccount(Account account){
-//        account.setId(0);
-//        return accountRepository.save(account);
-//    }
-//
+    @Override
+    public Collection<AccountValueHistory> getAccountHistory(int accountId){
+        return accountValueHistoryRepository.findByAccountId(accountId);
+    }
+
 
     // ------------ Updating Data ------------
 
@@ -133,9 +119,4 @@ public class PortfolioServiceImpl implements PortfolioService {
             holdingsRepository.save(existing_Holding);                                  //saves updated entry
         }
     }
-//    @Override
-//    public Holdings addNewHoldings(Holdings holdings){
-//        holdings.setId(0);
-//        return HoldingsRepository.save(holdings);
-//    }
 }

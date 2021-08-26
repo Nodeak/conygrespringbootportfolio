@@ -1,15 +1,10 @@
 package com.conygre.training.springboot.SpringBootPortfolioAPI.service;
 
-import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.Account;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.Holdings;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.User;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.MarketMovers;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.HoldingsRepository;
-import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.MoversRepository;
+import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.*;
+import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.AccountValueHistoryRepository;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Map;
 
 public interface PortfolioService {
     Iterable<User> getCatalog();
@@ -25,6 +20,7 @@ public interface PortfolioService {
     Collection<Holdings> getHoldingsByAccountId(int accountId);
     Collection<Holdings> getHoldingsByAccountIdAndType(int accountId, String type);
     Collection<MarketMovers> getAllMovers();
+    Collection<AccountValueHistory> getAccountHistory(int accountId);
 
     // --------------- Updating Data ----------------
     void updateStockPrices() throws IOException;
