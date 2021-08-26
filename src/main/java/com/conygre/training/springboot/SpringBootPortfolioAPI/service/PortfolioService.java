@@ -3,7 +3,9 @@ package com.conygre.training.springboot.SpringBootPortfolioAPI.service;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.Account;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.Holdings;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.User;
+import com.conygre.training.springboot.SpringBootPortfolioAPI.entities.MarketMovers;
 import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.HoldingsRepository;
+import com.conygre.training.springboot.SpringBootPortfolioAPI.repo.MoversRepository;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -22,6 +24,7 @@ public interface PortfolioService {
     Account getAccountById(int accountId);
     Collection<Holdings> getHoldingsByAccountId(int accountId);
     Collection<Holdings> getHoldingsByAccountIdAndType(int accountId, String type);
+    Collection<MarketMovers> get_AllMovers();
 
     // --------------- Updating Data ----------------
     void updateStockPrices() throws IOException;
@@ -30,4 +33,7 @@ public interface PortfolioService {
 //    User addNewUser(User user);
 //    Account addNewAccount(Account account);
 //    Holdings addNewHoldings(Holdings holdings);
+
+    void Update_Movers() throws IOException;
+    //float get_PercentChange(String symbol) throws IOException;
 }

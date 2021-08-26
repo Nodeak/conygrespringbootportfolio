@@ -34,6 +34,11 @@ public class PortfolioController {
         return portfolioService.getAllUsers();
     }
 
+    @GetMapping("/marketmovers")
+    public Collection<MarketMovers> getMovers(){
+        return portfolioService.get_AllMovers();
+    }
+
     // --------------- Regarding Specific Accounts ---------------
     //Returns accounts with specific userId
     @RequestMapping(value = "/{userId}/accounts", method=RequestMethod.GET)
