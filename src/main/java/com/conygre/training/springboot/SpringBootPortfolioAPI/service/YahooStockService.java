@@ -94,6 +94,7 @@
 //        Marketindex=YahooFinance.get("DJIA");
 //        Market_Movers.put("DJIA",Marketindex.getQuote().getPrice().floatValue());
 //
+
 //        return Market_Movers;
 //    }
 //
