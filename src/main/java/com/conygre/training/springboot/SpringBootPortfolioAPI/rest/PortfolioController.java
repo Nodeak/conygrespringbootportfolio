@@ -35,7 +35,8 @@ public class PortfolioController {
     }
 
     @GetMapping("/marketmovers")
-    public Collection<MarketMovers> getMovers(){
+    public Collection<MarketMovers> getMovers() throws IOException{
+        portfolioService.Update_Movers();
         return portfolioService.getAllMovers();
     }
 
