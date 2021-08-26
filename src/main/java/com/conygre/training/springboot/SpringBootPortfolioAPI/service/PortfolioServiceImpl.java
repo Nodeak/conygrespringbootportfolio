@@ -80,27 +80,22 @@ public class PortfolioServiceImpl implements PortfolioService {
 //        return accountRepository.save(account);
 //    }
 //
-//    @Override
-//    public Holdings addNewHoldings(Holdings holdings) {
-//        return null;
-//    }
 
+    // ------------ Updating Data ------------
 
     //updates current price and percent change over the last 24 hours
     @Override
-    public void Update_Price() throws IOException {
-        int id=1;
+    public void updateStockPrices() throws IOException {
         Holdings existing_Holding;
         Stock stock;
 
-        while(holdingsRepository.findById(id).isPresent())
+        for(Holdings holding : holdingsRepository.findAll())
         {
-            existing_Holding = holdingsRepository.getById(id);                       //gets holdings entry from collection
-            stock = YahooFinance.get(existing_Holding.getSymbol());                  //looks up stock info
+            existing_Holding = holding;                                                 //gets holdings entry from collection
+            stock = YahooFinance.get(existing_Holding.getSymbol());                     //looks up stock info
 
-            existing_Holding.setCurPrice(stock.getQuote().getPrice().floatValue()); //changes price
-            holdingsRepository.save(existing_Holding);                               //saves updated entry
-            id+=1;
+            existing_Holding.setCurPrice(stock.getQuote().getPrice().floatValue());     //changes price
+            holdingsRepository.save(existing_Holding);                                  //saves updated entry
         }
     }
 //    @Override

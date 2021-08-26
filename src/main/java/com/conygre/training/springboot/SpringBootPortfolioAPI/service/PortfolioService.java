@@ -23,11 +23,11 @@ public interface PortfolioService {
     Collection<Holdings> getHoldingsByAccountId(int accountId);
     Collection<Holdings> getHoldingsByAccountIdAndType(int accountId, String type);
 
+    // --------------- Updating Data ----------------
+    void updateStockPrices() throws IOException;
+
 //    /* POST */
 //    User addNewUser(User user);
 //    Account addNewAccount(Account account);
 //    Holdings addNewHoldings(Holdings holdings);
-
-    void Update_Price() throws IOException;
-    //float get_PercentChange(String symbol) throws IOException;
 }

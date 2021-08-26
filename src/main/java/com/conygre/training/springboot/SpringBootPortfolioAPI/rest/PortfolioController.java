@@ -9,6 +9,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.sound.midi.SysexMessage;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -55,13 +57,20 @@ public class PortfolioController {
 
     //Returns accounts with specific userId
     @RequestMapping(value = "/accounts/{accountId}/holdings", method=RequestMethod.GET)
-    public Collection<Holdings> getHoldingsByAccountId(@PathVariable int accountId){
+    public Collection<Holdings> getHoldingsByAccountId(@PathVariable int accountId) throws IOException {
+        portfolioService.updateStockPrices();
         return portfolioService.getHoldingsByAccountId(accountId);
     }
 
     @RequestMapping(value = "/accounts/{accountId}/holdings/type={stockType}", method=RequestMethod.GET)
-    public Collection<Holdings> getHoldingsByAccountIdAndType(int accountId, String stockType){
+    public Collection<Holdings> getHoldingsByAccountIdAndType(int accountId, String stockType) throws IOException {
+        portfolioService.updateStockPrices();
         return portfolioService.getHoldingsByAccountIdAndType(accountId, stockType);
+    }
+
+    @RequestMapping(value = "/current-prices", method=RequestMethod.GET)
+    public void updateStockPrices() throws IOException {
+        portfolioService.updateStockPrices();
     }
 
 //    /* USER POST METHODS */
